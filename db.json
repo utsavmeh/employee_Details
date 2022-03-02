@@ -1,0 +1,65 @@
+{
+  "employee": [
+    {
+      "name": "utsav mehrotra",
+      "email": "utsavmehrotra@gmail.com",
+      "dob": "2000-05-23",
+      "phone_number": "7068712602",
+      "id": 1
+    },
+    {
+      "name": "new employee",
+      "email": "newemp@gmail.com",
+      "dob": "2000-05-23",
+      "phone_number": "1232322232",
+      "id": 2
+    },
+    {
+      "name": "abc",
+      "email": "as@gas.com",
+      "dob": "2005-12-30",
+      "phone_number": "1234567890",
+      "id": 3
+    },
+    {
+      "name": "uashdas",
+      "email": "asdasd@sadas",
+      "dob": "2014-03-24",
+      "phone_number": "ssadasasss",
+      "id": 4
+    },
+    {
+      "name": "new e",
+      "email": "newemp@gmail.com",
+      "dob": "2000-05-23",
+      "phone_number": "1232322232",
+      "id": 5
+    }
+  ],
+  "user": [
+    {
+      "fname": "utsav",
+      "lname": "mehrotra",
+      "email": "utsavmehrotra@gmail.com",
+      "phoneNumber": "1234567890",
+      "password": "1234",
+      "id": 2
+    },
+    {
+      "fname": "emp",
+      "lname": "1",
+      "email": "emp@gmail.com",
+      "phoneNumber": "123123123",
+      "password": "123",
+      "id": 3
+    },
+    {
+      "fname": "q",
+      "lname": "q",
+      "email": "q",
+      "phoneNumber": "q",
+      "password": "q",
+      "id": 4
+    }
+  ]
+}
