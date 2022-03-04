@@ -52,15 +52,7 @@ const NewSignin = () => {
     const [password, setPassword] = useState("")
 
 	
-	// const dispatch = useDispatch();
-	// const userInfo = useSelector((state) => state.UserLogin);
-	// const { Loading, error, usertoken } = userInfo;
-
-	// useEffect(() => {
-	// 	if (!error && usertoken) {
-	// 		history.push("/home");
-	// 	}
-	// });
+	
 
 	const PostData = () => {
 		axios.get('http://localhost:3000/user').then(res => {

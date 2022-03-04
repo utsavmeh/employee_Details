@@ -1,18 +1,34 @@
 import axios from 'axios'
 import { useEffect, useState } from "react";
 import {Button} from '@material-ui/core'
+import { DataGrid } from '@mui/x-data-grid';
 import { Link } from "react-router-dom";
 import Navbar from './Components/Navbar'
 import { useNavigate } from 'react-router-dom';
-import {Table, TableContainer, TableHead, TableRow, Paper, TableBody, TableCell, Container} from '@material-ui/core'
-
+import { TextField, Container } from '@material-ui/core';
+import { Autocomplete } from '@mui/material';
+import Teddy from './Components/Teddy';
 
 
 const App = () => {
 
     const navigate = useNavigate()
     const [empDetails, setEmpDetails] = useState([])
+    const [selected_item, setSelected_item] = useState(null)  
+    const [tempDetails, setTempDetails] = useState("")
+    const [searchOptions, setSearchOptions] = useState("")
     const id = localStorage.getItem('id')
+
+    const searchArray = ['email', 'id', 'phone_number', 'name', 'dob'];
+
+    const getDetails = () => {
+
+        axios.get('http://localhost:3000/employee').then(res => {
+            console.log(res)
+            setEmpDetails(res.data)
+        }).catch(err => {
+            console.log(err)
+      })}
 
     useEffect(() => {
 
@@ -23,6 +39,7 @@ const App = () => {
             axios.get('http://localhost:3000/employee').then(res => {
                 console.log(res)
                 setEmpDetails(res.data)
+                setTempDetails(res.data)
             }).catch(err => {
                 console.log(err)
           })}
@@ -35,56 +52,108 @@ const App = () => {
 
     
       const delete_item = (id) => {
+        // console.log(id)
+          id.map((new_id) => {
+            console.log(new_id)
+            axios.delete(`http://localhost:3000/employee/${new_id}`).then(res => {
+                console.log("deleted Successfully")
+                // setEmpDetails(empDetails.filter(emp => emp.id !== new_id))
+                getDetails()
+            }).catch(err => {
+                console.log(err)
+          })
 
-          axios.delete(`http://localhost:3000/employee/${id}`).then(res => {
-              console.log("deleted Successfully")
-              setEmpDetails(empDetails.filter(emp => emp.id !== id))
-          }).catch(err => {
-              console.log(err)
         })
       }
+    
+
+      const column = [
+        {field: "id", headerName:"Id", width:150},
+        {field:"name", headerName:"name", width:150},
+        {field:"email", headerName:"email", width:200},
+        {field:"dob", headerName:"dob", width:150},
+        {field:"phone_number", headerName:"phone_number", width:150},
+    ]
+
+
+    const checkSearch = (emp, value) => {
+      console.log(typeof emp.id)
+      if(searchOptions === 'email'){
+        return emp.email.includes(value)
+      }
+      if(searchOptions === 'id'){
+        return emp.id == value
+      }
+      if(searchOptions === 'dob'){
+        return emp.dob.includes(value)
+      }
+      if(searchOptions === 'name'){
+        return emp.name.includes(value)
+      }
+      if(searchOptions === 'phone_number'){
+        return emp.phone_number.includes(value)
+      }
+      
+    }
+
+    const handleSearch = (value) => {
+      const temp = tempDetails;
+      setEmpDetails(temp.filter(emp => checkSearch(emp, value)))
+      
+      console.log(value)
+    }
     
 
 
   return (
       <>        
-        <Navbar />
-        <Container style={{marginTop:"30px"}}>
-        <TableContainer component={Paper}>
-      <Table sx={{ minWidth: 650 }} aria-label="simple table">
-        <TableHead>
-          <TableRow style={{backgroundColor:"rgb(147,147,147)"}}>
-            <TableCell align="center" style={{fontWeight:"bold", fontSize:"16px"}}>Name</TableCell>
-            <TableCell align="center" style={{fontWeight:"bold", fontSize:"16px"}}>Email</TableCell>
-            <TableCell align="center" style={{fontWeight:"bold", fontSize:"16px"}}>DOB</TableCell>
-            <TableCell align="center" style={{fontWeight:"bold", fontSize:"16px"}}>Phone Number</TableCell>
-            <TableCell align="center" style={{fontWeight:"bold", fontSize:"16px"}}>Edit Options</TableCell>
-          </TableRow>
-        </TableHead>
-        <TableBody>
-          {empDetails.map((row) => (
-            <TableRow
-              className="tableRow"
-              key={row.name}
-              sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
-            >
-              <TableCell align="center">
-                {row.name}
-              </TableCell>
-              <TableCell align="center">{row.email}</TableCell>
-              <TableCell align="center">{row.dob}</TableCell>
-              <TableCell align="center">{row.phone_number}</TableCell>
-              <TableCell align="center"><Button variant="contained" onClick={() => delete_item(row.id)}> Delete</Button>
-              <Link to={`/addDetails/${row.id}`}>
-                <Button variant="contained" style={{marginLeft:"10px"}}>Edit</Button>
-              </Link>
-              </TableCell>
-            </TableRow>
-          ))}
-        </TableBody>
-      </Table>
-    </TableContainer>
-    </Container>  
+        <Navbar/>
+         <Container style={{marginTop:"30px"}}>
+           
+      <div style={{ height: 400, width: '70%', marginLeft:"auto", marginRight:"auto" }}>
+        <span style={{display:"flex", marginBottom:"10px", alignItems:"center"}}>
+          <Autocomplete
+            disablePortal
+            id="combo-box-demo"
+            options={searchArray}
+            onChange={(event, newValue) => {
+              setSearchOptions(newValue)
+            }}
+            sx={{ width: 300 }}
+            renderInput={(params) => <TextField {...params} label="Search using"/>}
+            
+          />
+          <TextField label="Search..." onChange={(e) => handleSearch(e.target.value)} style={{marginLeft:"20px"}}/>
+        </span>
+        <DataGrid
+          rows={empDetails}
+          columns={column}
+          pageSize={5}
+          rowsPerPageOptions={[5]}
+          checkboxSelection
+          onSelectionModelChange={(newSelection) => {
+            console.log(newSelection)
+            setSelected_item(newSelection)
+            if(newSelection.length === 0){
+              setSelected_item(null)
+            }
+          }}
+        />
+        {selected_item !== null ? 
+         <Button variant="contained" style={{color:"red", backgroundColor:"rgba(255, 84, 84,0.5)", marginTop:"10px"}} onClick={() => delete_item(selected_item)}>Delete</Button>
+         : ""
+        }
+        {
+          selected_item !== null ? 
+          (selected_item.length === 1 ? 
+          <Link to={`/addDetails/${selected_item}`}>
+          <Button variant="contained" color="primary" style={{marginTop:"10px", marginLeft:"10px"}}>Edit</Button> </Link>: <Button disabled variant="contained" color="primary" style={{marginTop:"10px", marginLeft:"10px"}}>You can't edit more than one item at a time</Button>) : ""
+        }
+      </div>
+
+      <Teddy />
+    </Container>
+
     </>
     
   );

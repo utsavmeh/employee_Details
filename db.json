@@ -2,38 +2,52 @@
   "employee": [
     {
       "name": "utsav mehrotra",
-      "email": "utsavmehrotra@gmail.com",
+      "email": "utsav@gmail.com",
       "dob": "2000-05-23",
       "phone_number": "7068712602",
       "id": 1
     },
     {
-      "name": "new employee",
-      "email": "newemp@gmail.com",
-      "dob": "2000-05-23",
-      "phone_number": "1232322232",
+      "name": "ravi",
+      "email": "ravi@gmail.com",
+      "dob": "2021-01-02",
+      "phone_number": "1231231231",
       "id": 2
     },
     {
-      "name": "abc",
-      "email": "as@gas.com",
-      "dob": "2005-12-30",
-      "phone_number": "1234567890",
+      "name": "raman",
+      "email": "raman@gmail.com",
+      "dob": "2021-12-01",
+      "phone_number": "1232131212",
       "id": 3
     },
     {
-      "name": "uashdas",
-      "email": "asdasd@sadas",
-      "dob": "2014-03-24",
-      "phone_number": "ssadasasss",
+      "name": "kiran",
+      "email": "kiran@gmail.com",
+      "dob": "2017-12-31",
+      "phone_number": "1212121212",
       "id": 4
     },
     {
-      "name": "new e",
-      "email": "newemp@gmail.com",
-      "dob": "2000-05-23",
-      "phone_number": "1232322232",
+      "name": "raghu",
+      "email": "raghu@gmail.com",
+      "dob": "2015-12-01",
+      "phone_number": "1232112334",
       "id": 5
+    },
+    {
+      "name": "vijay",
+      "email": "vijay@gmail.com",
+      "dob": "2020-01-01",
+      "phone_number": "",
+      "id": 6
+    },
+    {
+      "name": "sharma",
+      "email": "sharma@gmail.com",
+      "dob": "2022-03-21",
+      "phone_number": "9876543210",
+      "id": 7
     }
   ],
   "user": [

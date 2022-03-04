@@ -7,7 +7,7 @@ import Navbar from './Components/Navbar'
 import Profile from './Screens/Profile';
 import Login from './Components/Login';
 import Signup from './Components/Signup';
-import MiniDrawer from './Components/Drawer'
+import TemporaryDrawer from './Components/Drawer'
 
 const AppRoutes = () => {
 
@@ -25,7 +25,7 @@ const AppRoutes = () => {
                 <Route exact path="/profile" element=  {<Profile />} />
                 <Route exact path="/signup" element={<Signup />} />
                 <Route exact path="/login" element={<Login />} />
-                <Route exact path="/drawer" element={<MiniDrawer />}/>
+                <Route exact path="/drawer" element={<TemporaryDrawer />}/>
             </Routes>
         </Router>
     )
