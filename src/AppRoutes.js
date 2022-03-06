@@ -1,17 +1,15 @@
-import {BrowserRouter as Router, Route, Routes, useNavigate} from 'react-router-dom'
+import {BrowserRouter as Router, Route, Routes} from 'react-router-dom'
 import App from './App';
 import AddDetails from "./Screens/AddDetails";
 import DeleteDetails from './Screens/DeleteDetails';
-import EditDetails from './Screens/EditDetails';
-import Navbar from './Components/Navbar'
 import Profile from './Screens/Profile';
 import Login from './Components/Login';
 import Signup from './Components/Signup';
-import TemporaryDrawer from './Components/Drawer'
+import TemporaryDrawer from './Components/Drawer';
 
 const AppRoutes = () => {
 
-    const id = localStorage.getItem("id");
+    // const id = localStorage.getItem("id");
     
 
     return(
@@ -26,6 +24,8 @@ const AppRoutes = () => {
                 <Route exact path="/signup" element={<Signup />} />
                 <Route exact path="/login" element={<Login />} />
                 <Route exact path="/drawer" element={<TemporaryDrawer />}/>
+                
+                {/* <ProtectedRoutes path='/profile' element={<Profile />} auth={false}/> */}
             </Routes>
         </Router>
     )

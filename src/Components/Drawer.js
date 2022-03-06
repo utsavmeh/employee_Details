@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Mail,MoveToInbox, List as ListIcon, Dehaze} from '@material-ui/icons';
+import { Dehaze} from '@material-ui/icons';
 import { ListItemText, ListItem, Divider, List, Button, Drawer, Box } from '@material-ui/core';
 import { AiFillFileAdd,AiOutlineLogout } from "react-icons/ai";
 import { Link,useNavigate } from 'react-router-dom';
@@ -48,14 +48,7 @@ export default function TemporaryDrawer() {
       onKeyDown={toggleDrawer(anchor, false)}
     >
       <List>
-        {/* {['Inbox', 'Starred', 'Send email', 'Drafts'].map((text, index) => (
-          <ListItem button key={text}>
-            <ListIcon>
-              {index % 2 === 0 ? <MoveToInbox /> : <Mail />}
-            </ListIcon>
-            <ListItemText primary={text} />
-          </ListItem>
-        ))} */}
+        
         <Link to='/' style={{textDecoration:"none" ,color:"black"}}>
             <ListItem button key='employeeDetails'>
                 <ListItemText primary="Employee Details" />
@@ -70,14 +63,7 @@ export default function TemporaryDrawer() {
       </List>
       <Divider />
       <List>
-        {/* {['All mail', 'Trash', 'Spam'].map((text, index) => (
-          <ListItem button key={text}>
-            <ListIcon>
-              {index % 2 === 0 ? <MoveToInbox /> : <Mail />}
-            </ListIcon>
-            <ListItemText primary={text} />
-          </ListItem>
-        ))} */}
+        
         <Link to="/profile" style={{textDecoration:"none" ,color:"black"}}>
             <ListItem button>
                 <CgProfile/>
