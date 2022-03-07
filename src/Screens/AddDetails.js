@@ -6,14 +6,15 @@ import { makeStyles } from "@material-ui/styles";
 import { useState, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom"
 import Navbar from '../Components/Navbar'
+import Sidebar from "../Components/sidebar";
 
 const useStyles = makeStyles((theme) => ({
     accord:{
         width:"500px",
+        marginTop:"50px"
         
     },
     container:{
-        marginTop:"50px",
         display:"flex",
         justifyContent:"center",
     },
@@ -120,59 +121,60 @@ const AddDetails = () => {
 
     return(
         <>  
-            <Navbar />
-            <Container className={classes.container}>
-            {/* <Button onClick={add} variant="standard" color="inherit">Add Details</Button> */}
-                <Accordion className={classes.accord}>
-                    <AccordionSummary
-                    className={classes.accord_summary}
-                    expandIcon={<ExpandMore />}
-                    aria-controls="panel1a-content"
-                    id="panel1a-header"
-                    >
-                    <Typography>{!params.id ? "Add Details" : "Edit Details"}</Typography>
-                    </AccordionSummary>
-                    <AccordionDetails className={classes.accord_details}>
-                        <TextField
-                            required
-                            id="outlined-required"
-                            label="Name"
-                            fullWidth
-                            value={name}
-                            onChange={(e) => {setName(e.target.value)}}
-                        />
-                        <TextField
-                            required
-                            error={emailError ? true : false}
-                            id="outlined-required"
-                            label="Email"
-                            fullWidth
-                            value={email}
-                            onChange={(e) => handleEmail(e.target.value)}
-                            helperText={emailError}
-                        />
-                        <TextField
-                            id="outlined-required"
-                            type="date"
-                            label=" "
-                            fullWidth
-                            value={dob}
-                            onChange={(e) => {setDob(e.target.value)}}
-                        />
-                        <TextField
-                            required
-                            error={phoneError ? true : false}
-                            id="outlined-required"
-                            label="Mobile Number"
-                            fullWidth
-                            value={phone_number}
-                            onChange={(e) => {handlePhone(e.target.value)}}
-                            helperText={phoneError}
-                        />
-                    </AccordionDetails>
-                    {name && !phoneError && !emailError && dob ? <Button onClick={add} variant="contained" color="primary" style={{margin:"20px"}}>{!params.id ? "Confirm Add" : "Confirm Change"}</Button> : ""}
-                </Accordion>
-             </Container>
+            <Sidebar>
+                <Container className={classes.container}>
+                {/* <Button onClick={add} variant="standard" color="inherit">Add Details</Button> */}
+                    <Accordion className={classes.accord}>
+                        <AccordionSummary
+                        className={classes.accord_summary}
+                        expandIcon={<ExpandMore />}
+                        aria-controls="panel1a-content"
+                        id="panel1a-header"
+                        >
+                        <Typography>{!params.id ? "Add Details" : "Edit Details"}</Typography>
+                        </AccordionSummary>
+                        <AccordionDetails className={classes.accord_details}>
+                            <TextField
+                                required
+                                id="outlined-required"
+                                label="Name"
+                                fullWidth
+                                value={name}
+                                onChange={(e) => {setName(e.target.value)}}
+                            />
+                            <TextField
+                                required
+                                error={emailError ? true : false}
+                                id="outlined-required"
+                                label="Email"
+                                fullWidth
+                                value={email}
+                                onChange={(e) => handleEmail(e.target.value)}
+                                helperText={emailError}
+                            />
+                            <TextField
+                                id="outlined-required"
+                                type="date"
+                                label=" "
+                                fullWidth
+                                value={dob}
+                                onChange={(e) => {setDob(e.target.value)}}
+                            />
+                            <TextField
+                                required
+                                error={phoneError ? true : false}
+                                id="outlined-required"
+                                label="Mobile Number"
+                                fullWidth
+                                value={phone_number}
+                                onChange={(e) => {handlePhone(e.target.value)}}
+                                helperText={phoneError}
+                            />
+                        </AccordionDetails>
+                        {name && !phoneError && !emailError && dob ? <Button onClick={add} variant="contained" color="primary" style={{margin:"20px"}}>{!params.id ? "Confirm Add" : "Confirm Change"}</Button> : ""}
+                    </Accordion>
+                </Container>
+            </Sidebar>
         </>
     )
 }

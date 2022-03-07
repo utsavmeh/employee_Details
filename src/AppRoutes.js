@@ -6,6 +6,7 @@ import Profile from './Screens/Profile';
 import Login from './Components/Login';
 import Signup from './Components/Signup';
 import TemporaryDrawer from './Components/Drawer';
+import Sidebar from './Components/sidebar';
 
 const AppRoutes = () => {
 
@@ -24,7 +25,7 @@ const AppRoutes = () => {
                 <Route exact path="/signup" element={<Signup />} />
                 <Route exact path="/login" element={<Login />} />
                 <Route exact path="/drawer" element={<TemporaryDrawer />}/>
-                
+                <Route exact path="/sidebar" element={<Sidebar />} />
                 {/* <ProtectedRoutes path='/profile' element={<Profile />} auth={false}/> */}
             </Routes>
         </Router>

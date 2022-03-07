@@ -1,8 +1,9 @@
 import { useState } from "react";
 import { makeStyles, Paper, TextField, Button } from "@material-ui/core";
 import {Link, useNavigate} from 'react-router-dom';
-import './Signup.css';
+import './style/Signup.css';
 import axios from "axios";
+import Sidebar from "./sidebar";
 
 const useStyles = makeStyles(() => ({
     TextField:{
@@ -51,6 +52,7 @@ const Signup = () => {
     }
     
     return(
+        <Sidebar>
         <div className="signup_bg_image" >
             
             <center>
@@ -72,7 +74,9 @@ const Signup = () => {
                         <p style={{margin:"20px 0", color:"grey"}}>Don't have an account? <Link to='/login' style={{cursor:"pointer", fontWeight:"bold", color:"blue", fontSize:"14px"}}> Sign in</Link></p>
                     </Paper>
             </center>
+            
         </div>
+        </Sidebar>
     )
 }
 

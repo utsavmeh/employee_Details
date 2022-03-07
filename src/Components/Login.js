@@ -3,7 +3,7 @@ import { TextField, Switch, Button, Paper } from "@material-ui/core";
 import { AiFillGithub, AiFillFacebook, AiFillGoogleCircle } from "react-icons/ai";
 import { makeStyles } from "@material-ui/core";
 import { Link } from "react-router-dom";
-import './Login.css'
+import './style/Login.css'
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 

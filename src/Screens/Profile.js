@@ -2,6 +2,7 @@ import axios from "axios";
 import { useState } from "react";
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import Sidebar from "../Components/sidebar";
 
 const Profile = () => {
 
@@ -28,9 +29,11 @@ const Profile = () => {
     }, [])
 
     return(
-        <h1>
-            Welcome {data.fname} {data.lname}
-        </h1>
+        <Sidebar>
+            <h1 style={{marginLeft:"300px"}}>
+                Welcome {data.fname} {data.lname}
+            </h1>
+        </Sidebar>
     )
 }
 

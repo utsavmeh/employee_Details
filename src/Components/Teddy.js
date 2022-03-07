@@ -1,4 +1,4 @@
-import './teddy.css'
+import './style/teddy.css'
 
 
 const Teddy = () => {

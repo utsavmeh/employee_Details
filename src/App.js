@@ -7,7 +7,8 @@ import Navbar from './Components/Navbar'
 import { useNavigate } from 'react-router-dom';
 import { TextField, Container } from '@material-ui/core';
 import { Autocomplete } from '@mui/material';
-import Teddy from './Components/Teddy';
+// import Teddy from './Components/Teddy';
+import Sidebar from './Components/sidebar';
 
 
 const App = () => {
@@ -107,52 +108,52 @@ const App = () => {
 
   return (
       <>        
-        <Navbar/>
-         <Container style={{marginTop:"30px"}}>
-           
-      <div style={{ height: 400, width: '70%', marginLeft:"auto", marginRight:"auto" }}>
-        <span style={{display:"flex", marginBottom:"10px", alignItems:"center"}}>
-          <Autocomplete
-            disablePortal
-            id="combo-box-demo"
-            options={searchArray}
-            onChange={(event, newValue) => {
-              setSearchOptions(newValue)
-            }}
-            sx={{ width: 300 }}
-            renderInput={(params) => <TextField {...params} label="Search using"/>}
+        <Sidebar>
+          <Container>
             
-          />
-          <TextField label="Search..." onChange={(e) => handleSearch(e.target.value)} style={{marginLeft:"20px"}}/>
-        </span>
-        <DataGrid
-          rows={empDetails}
-          columns={column}
-          pageSize={5}
-          rowsPerPageOptions={[5]}
-          checkboxSelection
-          onSelectionModelChange={(newSelection) => {
-            console.log(newSelection)
-            setSelected_item(newSelection)
-            if(newSelection.length === 0){
-              setSelected_item(null)
-            }
-          }}
-        />
-        {selected_item !== null ? 
-         <Button variant="contained" style={{color:"red", backgroundColor:"rgba(255, 84, 84,0.5)", marginTop:"10px"}} onClick={() => delete_item(selected_item)}>Delete</Button>
-         : ""
-        }
-        {
-          selected_item !== null ? 
-          (selected_item.length === 1 ? 
-          <Link to={`/addDetails/${selected_item}`}>
-          <Button variant="contained" color="primary" style={{marginTop:"10px", marginLeft:"10px"}}>Edit</Button> </Link>: <Button disabled variant="contained" color="primary" style={{marginTop:"10px", marginLeft:"10px"}}>You can't edit more than one item at a time</Button>) : ""
-        }
-      </div>
-
-      <Teddy />
-    </Container>
+            <div style={{ height: 400, width: '70%', marginLeft:"auto", marginRight:"auto" }}>
+              <span style={{display:"flex", marginBottom:"10px", alignItems:"center"}}>
+                <Autocomplete
+                  disablePortal
+                  id="combo-box-demo"
+                  options={searchArray}
+                  onChange={(event, newValue) => {
+                    setSearchOptions(newValue)
+                  }}
+                  sx={{ width: 300 }}
+                  renderInput={(params) => <TextField {...params} label="Search using"/>}
+                />
+                <TextField label="Search..." onChange={(e) => handleSearch(e.target.value)} style={{marginLeft:"20px"}}/>
+              </span>
+              <DataGrid
+                rows={empDetails}
+                columns={column}
+                pageSize={5}
+                rowsPerPageOptions={[5]}
+                checkboxSelection
+                onSelectionModelChange={(newSelection) => {
+                  console.log(newSelection)
+                  setSelected_item(newSelection)
+                  if(newSelection.length === 0){
+                    setSelected_item(null)
+                  }
+                }}
+              />
+              {
+                selected_item !== null ? 
+                <Button variant="contained" style={{color:"red", backgroundColor:"rgba(255, 84, 84,0.5)", marginTop:"10px"}} onClick={() => delete_item(selected_item)}>Delete</Button>
+                : ""
+              }
+              {
+                selected_item !== null ? 
+                (selected_item.length === 1 ? 
+                <Link to={`/addDetails/${selected_item}`}>
+                <Button variant="contained" color="primary" style={{marginTop:"10px", marginLeft:"10px"}}>Edit</Button> </Link>: <Button disabled variant="contained" color="primary" style={{marginTop:"10px", marginLeft:"10px"}}>You can't edit more than one item at a time</Button>) : ""
+              }
+            </div>
+            {/* <Teddy /> */}
+          </Container>
+        </Sidebar>
 
     </>
     
