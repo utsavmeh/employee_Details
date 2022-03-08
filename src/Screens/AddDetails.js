@@ -1,5 +1,5 @@
 import { Button } from "@material-ui/core"
-import axios from "axios"
+import Axios from '../Components/Axios/axios'
 import { Accordion, AccordionSummary,AccordionDetails,Typography, Container, TextField } from "@material-ui/core";
 import { ExpandMore } from "@material-ui/icons";
 import { makeStyles } from "@material-ui/styles";
@@ -76,7 +76,7 @@ const AddDetails = () => {
     useEffect(() => {
         {id ? params.id ? navigate(`/addDetails/${params.id}`) : navigate('/addDetails') : navigate('/login')}
         if(params.id){
-            axios.get(`http://localhost:3000/employee/${params.id}`).then(res=>{
+            Axios.get(`/employee/${params.id}`).then(res=>{
                 console.log(res.data)
             setName(res.data.name)
             setEmail(res.data.email)
@@ -88,7 +88,7 @@ const AddDetails = () => {
     
     const add = () => {
         {!params.id ? 
-            axios.post(`http://localhost:3000/employee/`, {
+            Axios.post(`/employee/`, {
                 name, email,dob, phone_number
             }).then((res) => {
                 console.log("added Successfully")
@@ -103,7 +103,7 @@ const AddDetails = () => {
             })
 
         :
-            axios.patch(`http://localhost:3000/employee/${params.id}`, {
+            Axios.patch(`/employee/${params.id}`, {
                     name,email,dob, phone_number
                 }).then(res => {
                     console.log(res)

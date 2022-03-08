@@ -1,4 +1,3 @@
-import axios from 'axios'
 import { useEffect, useState } from "react";
 import {Button} from '@material-ui/core'
 import { DataGrid } from '@mui/x-data-grid';
@@ -8,6 +7,7 @@ import { useNavigate } from 'react-router-dom';
 import { TextField, Container } from '@material-ui/core';
 import { Autocomplete } from '@mui/material';
 // import Teddy from './Components/Teddy';
+import Axios from './Components/Axios/axios';
 import Sidebar from './Components/sidebar';
 
 
@@ -24,7 +24,7 @@ const App = () => {
 
     const getDetails = () => {
 
-        axios.get('http://localhost:3000/employee').then(res => {
+        Axios.get('/employee').then(res => {
             console.log(res)
             setEmpDetails(res.data)
         }).catch(err => {
@@ -32,12 +32,11 @@ const App = () => {
       })}
 
     useEffect(() => {
-
         {id ? navigate('/') : navigate('/login')}
           if(id){
             const getDetails = () => {
 
-            axios.get('http://localhost:3000/employee').then(res => {
+            Axios.get('/employee').then(res => {
                 console.log(res)
                 setEmpDetails(res.data)
                 setTempDetails(res.data)
@@ -56,7 +55,7 @@ const App = () => {
         // console.log(id)
           id.map((new_id) => {
             console.log(new_id)
-            axios.delete(`http://localhost:3000/employee/${new_id}`).then(res => {
+            Axios.delete(`http://localhost:3000/employee/${new_id}`).then(res => {
                 console.log("deleted Successfully")
                 // setEmpDetails(empDetails.filter(emp => emp.id !== new_id))
                 getDetails()

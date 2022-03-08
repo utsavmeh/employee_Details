@@ -5,7 +5,7 @@ import { makeStyles } from "@material-ui/core";
 import { Link } from "react-router-dom";
 import './style/Login.css'
 import { useNavigate } from "react-router-dom";
-import axios from "axios";
+import Axios from "./Axios/axios";
 
 const useStyles = makeStyles(() => ({
     TextField:{
@@ -55,7 +55,7 @@ const NewSignin = () => {
 	
 
 	const PostData = () => {
-		axios.get('http://localhost:3000/user').then(res => {
+		Axios.get('/user').then(res => {
             // console.log(res)
             res.data.map((item,index) => {
                 

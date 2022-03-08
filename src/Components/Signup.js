@@ -2,7 +2,7 @@ import { useState } from "react";
 import { makeStyles, Paper, TextField, Button } from "@material-ui/core";
 import {Link, useNavigate} from 'react-router-dom';
 import './style/Signup.css';
-import axios from "axios";
+import Axios from "./Axios/axios";
 import Sidebar from "./sidebar";
 
 const useStyles = makeStyles(() => ({
@@ -41,7 +41,7 @@ const Signup = () => {
     const [password, setPassword] = useState("")
 
     const handleSignup = () => {
-        axios.post('http://localhost:3000/user', {
+        Axios.post('/user', {
             fname,lname,email,phoneNumber,password
         }).then(res => {
             console.log(res)

@@ -1,9 +1,9 @@
 import { Button } from "@material-ui/core"
-import axios from "axios"
+import Axios from "../Components/Axios/axios"
 
 const DeleteDetails = () => {
     const delete_item = () => {
-        axios.delete(`http://localhost:3000/employee/${9}`).then(res => {
+        Axios.delete(`/employee/${9}`).then(res => {
             console.log("deleted Successfully")
         }).catch(err => {
             console.log(err)

@@ -29,7 +29,7 @@
       "id": 5
     },
     {
-      "name": "vijay",
+      "name": "vijay m",
       "email": "vijay@gmail.com",
       "dob": "2020-01-01",
       "phone_number": "",
@@ -41,6 +41,13 @@
       "dob": "2022-03-21",
       "phone_number": "9876543210",
       "id": 7
+    },
+    {
+      "name": "utsav",
+      "email": "utsav@gmail.com",
+      "dob": "2020-02-07",
+      "phone_number": "1231231231",
+      "id": 8
     }
   ],
   "user": [
@@ -67,6 +74,14 @@
       "phoneNumber": "q",
       "password": "q",
       "id": 4
+    },
+    {
+      "fname": "w",
+      "lname": "w",
+      "email": "w",
+      "phoneNumber": "w",
+      "password": "w",
+      "id": 5
     }
   ]
 }

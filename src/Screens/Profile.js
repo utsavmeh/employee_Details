@@ -1,4 +1,4 @@
-import axios from "axios";
+import Axios from "../Components/Axios/axios";
 import { useState } from "react";
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
@@ -16,7 +16,7 @@ const Profile = () => {
 
         if(id){
             const getDetails = () => {
-            axios.get(`http://localhost:3000/user/${id}`).then(res => {
+            Axios.get(`/user/${id}`).then(res => {
                 console.log(res)
                 setData(res.data)
             }).catch(err => {

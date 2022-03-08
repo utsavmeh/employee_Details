@@ -1,5 +1,5 @@
 import { Accordion,Button, AccordionSummary,AccordionDetails,Typography, Container, TextField } from "@material-ui/core";
-import axios from "axios"
+import Axios from "../Components/Axios/axios";
 import { ExpandMore } from "@material-ui/icons";
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom"
@@ -34,7 +34,7 @@ const EditDetails = () => {
     useEffect(() => {
         const getDetails = () => {
 
-          axios.get('http://localhost:3000/employee').then(res => {
+          Axios.get('/employee').then(res => {
               console.log(res)
               setEmpDetails(res.data)
           }).catch(err => {
@@ -51,7 +51,7 @@ const EditDetails = () => {
 
     
     const edit = () => {
-        axios.patch(`http://localhost:3000/employee/${params.id}`, {
+        Axios.patch(`/employee/${params.id}`, {
             name,email,dob, phone_number
         }).then(res => {
             console.log(res)
