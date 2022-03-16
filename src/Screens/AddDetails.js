@@ -1,4 +1,4 @@
-import { Button } from "@material-ui/core"
+import { Button, Paper } from "@material-ui/core"
 import Axios from '../Components/Axios/axios'
 import { Accordion, AccordionSummary,AccordionDetails,Typography, Container, TextField } from "@material-ui/core";
 import { ExpandMore } from "@material-ui/icons";
@@ -26,6 +26,11 @@ const useStyles = makeStyles((theme) => ({
     },
     accord_summary :{
         backgroundColor:"rgba(21, 81, 101, 0.4)"
+    },
+    addDetails_div:{
+        display:"flex",
+        flexDirection:"column",
+        gap:"10px"
     }
 }))
 
@@ -90,12 +95,8 @@ const AddDetails = () => {
         {!params.id ? 
             Axios.post(`/employee/`, {
                 name, email,dob, phone_number
-            }).then((res) => {
+            }).then(() => {
                 console.log("added Successfully")
-                // setName("")
-                // setEmail("")
-                // setDob("")
-                // setPhone_number("")
                 navigate('/')
                 
             }).catch((err) => {
@@ -108,10 +109,6 @@ const AddDetails = () => {
                 }).then(res => {
                     console.log(res)
                     console.log("Edited successfully")
-                    // setName("")
-                    // setEmail("")
-                    // setDob("")
-                    // setPhone_number("")
                     navigate('/')
                 }).catch(err => {
                     console.log(err)
@@ -121,10 +118,11 @@ const AddDetails = () => {
 
     return(
         <>  
+        <Navbar />
             <Sidebar>
                 <Container className={classes.container}>
                 {/* <Button onClick={add} variant="standard" color="inherit">Add Details</Button> */}
-                    <Accordion className={classes.accord}>
+                    {/* <Accordion className={classes.accord}>
                         <AccordionSummary
                         className={classes.accord_summary}
                         expandIcon={<ExpandMore />}
@@ -133,7 +131,11 @@ const AddDetails = () => {
                         >
                         <Typography>{!params.id ? "Add Details" : "Edit Details"}</Typography>
                         </AccordionSummary>
-                        <AccordionDetails className={classes.accord_details}>
+                        <AccordionDetails className={classes.accord_details}> */}
+                        <Paper style={{padding:"10px 40px", marginTop:"50px"}}>
+                        <Typography gutterBottom variant="h4" style={{textAlign:"center", letterSpacing:"8px"}}>Add Employee</Typography> 
+
+                        <div className={classes.addDetails_div}>
                             <TextField
                                 required
                                 id="outlined-required"
@@ -170,9 +172,12 @@ const AddDetails = () => {
                                 onChange={(e) => {handlePhone(e.target.value)}}
                                 helperText={phoneError}
                             />
-                        </AccordionDetails>
-                        {name && !phoneError && !emailError && dob ? <Button onClick={add} variant="contained" color="primary" style={{margin:"20px"}}>{!params.id ? "Confirm Add" : "Confirm Change"}</Button> : ""}
-                    </Accordion>
+                            {name && !phoneError && !emailError && dob ? <Button onClick={add} variant="contained" color="primary" style={{margin:"20px"}}>{!params.id ? "Confirm Add" : "Confirm Change"}</Button> : ""}
+                        </div>
+                        </Paper>
+                        {/* </AccordionDetails> */}
+                        
+                    {/* </Accordion> */}
                 </Container>
             </Sidebar>
         </>

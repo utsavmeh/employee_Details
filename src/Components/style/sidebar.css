@@ -18,6 +18,10 @@ label {
 	display: flex;
 	justify-content: center;
 }
+.sidebar {
+	position: absolute;
+	top: 0;
+}
 
 label #btn,
 label #cancel {

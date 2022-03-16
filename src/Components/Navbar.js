@@ -2,13 +2,16 @@ import { Link } from "react-router-dom";
 import {AppBar,
 Toolbar,
 Typography,
-Container,
 Box,
+Paper,
 } from "@material-ui/core"
 import {makeStyles} from '@material-ui/core/styles';
 import { useNavigate } from "react-router-dom";
-import Sidebar from "./sidebar";
-
+import { useEffect, useState } from "react";
+import {AiFillFileAdd, AiOutlineLogout, AiOutlineOrderedList} from 'react-icons/ai'
+import {CgProfile} from 'react-icons/cg'
+import {BsGrid3X3Gap} from 'react-icons/bs'
+import './style/Navbar.css'
 
 const useStyles = makeStyles((theme) => ({
   button:{
@@ -28,7 +31,7 @@ const useStyles = makeStyles((theme) => ({
   },
   logout:{
     cursor:"pointer"
-  }
+  },
 }));
 
 
@@ -36,8 +39,16 @@ const Navbar = (props) => {
 
 
   const classes = useStyles();
-  // const id = localStorage.getItem("id")
   const navigate = useNavigate();
+
+  const path = window.location.pathname;
+
+  const [cardView, setCardView] = useState(true)
+
+  useEffect(() => {
+    props.func(cardView);
+  }, [cardView])
+
 
   const handleLogout = () => {
     localStorage.removeItem("id")
@@ -48,51 +59,51 @@ const Navbar = (props) => {
 
   return (
       <>
-      <div style={{display:"flex"}}>
-      {/* <TemporaryDrawer /> */}
-      <Sidebar>
-        <Container>
-          {/* <Box sx={{flexGrow:1}}> */}
+      
+      <div style={{display:"flex", marginLeft:"300px"}}>
             <AppBar position="static" className={classes.appbar}>
-              <Container maxWidth="xl">
                 <Toolbar disableGutters style={{display:"flex"}}>
-                  
-                    <Link to='/' style={{textDecoration:"none"}}>
-                      <Typography varinat='h4' className={classes.logo} >Employee Details</Typography>
-                    </Link>
+                  {path === '/'?  
+                    <Paper className="navbar_paper" elevation={4}>  
+                      <div className="icons">
+                        <b className="change_view">Change View : </b>
+                      <div className={`list_icons_div ${cardView ? "" : "active"}`}>
+                        <AiOutlineOrderedList className="list_icons" onClick={() => setCardView(false)}/>
+                      </div>
+                      <div className={`list_icons_div ${!cardView ? "" : 'active'}`}>
+                        <BsGrid3X3Gap className="list_icons" onClick={() => setCardView(true)}/>
+                      </div>
+                      </div>
+                    </Paper>
                     
-                  <Box sx={{flexGrow:1}} style={{display:"flex", justifyContent:"right"}}>
-                    <Link to="/addDetails" style={{textDecoration:"none"}}>
-                      <Typography variant="subtitle" className="nav_items" style={{display:"flex"}}>
-                        {/* <AiFillFileAdd style={{width:"25px", height:"25px", marginRight:"5px"}}/> */}
-                        Add Details
-                      </Typography>
-                    </Link>
+                  : 
+                  
+                  <b className="navbar_heading">{path.toUpperCase().slice(1)}</b>
+                  }
+                    <Box sx={{flexGrow:1}} style={{display:"flex", justifyContent:"right"}}>
+                      <Link to="/addDetails" style={{textDecoration:"none"}}>
+                        <AiFillFileAdd style={{width:"25px", height:"25px", margin:"0px 15px", color:"grey"}}/>
+                      </Link>
 
-                    <Link to="/profile" style={{textDecoration:"none"}}>
-                      <Typography variant="subtitle" className="nav_items">
-                        {/* <CgProfile style={{width:"25px", height:"25px", marginRight:"5px"}}/> */}
-                        Profile</Typography>
-                    </Link>
-                    <Link to="/signup" style={{textDecoration:"none"}}>
-                      <Typography variant="subtitle" className="nav_items">
-                        {/* <SiGnuprivacyguard style={{width:"25px", height:"25px", marginRight:"5px"}}/> */}
-                        Signup</Typography>
-                    </Link>
-                    <Typography variant="subtitle" className={classes.logout, "nav_items"} onClick={handleLogout}>
-                      {/* <AiOutlineLogout style={{width:"25px", height:"25px", marginRight:"5px"}}/> */}
-                      Logout</Typography>
-                  </Box>
+                      <Link to="/profile" style={{textDecoration:"none"}}>
+                          <CgProfile style={{width:"25px", height:"25px", margin:"0px 15px"}}/>
+                      </Link>
+                      <Typography variant="subtitle" className={`${classes.logout} nav_items`} onClick={handleLogout}>
+                        <AiOutlineLogout style={{width:"25px", height:"25px", marginRight:"30px"}}/>
+                      </Typography>
+                    </Box>
+                  
+                  
                 </Toolbar>
-              </Container>
             </AppBar>
-          {/* </Box> */}
-        </Container>
-      </Sidebar>
       </div>
     </>
     
   );
+}
+
+Navbar.defaultProps = {
+  func: (data) => {console.log(data)}
 }
 
 

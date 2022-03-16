@@ -7,6 +7,8 @@ import Login from './Components/Login';
 import Signup from './Components/Signup';
 import TemporaryDrawer from './Components/Drawer';
 import Sidebar from './Components/sidebar';
+// import CardView from './Components/CardView';
+import Updatemodal from './Components/updateModal';
 
 const AppRoutes = () => {
 
@@ -26,6 +28,7 @@ const AppRoutes = () => {
                 <Route exact path="/login" element={<Login />} />
                 <Route exact path="/drawer" element={<TemporaryDrawer />}/>
                 <Route exact path="/sidebar" element={<Sidebar />} />
+                <Route exact path="/modal" element={<Updatemodal />} />
                 {/* <ProtectedRoutes path='/profile' element={<Profile />} auth={false}/> */}
             </Routes>
         </Router>
@@ -33,3 +36,4 @@ const AppRoutes = () => {
 }
 
 export default AppRoutes;
+

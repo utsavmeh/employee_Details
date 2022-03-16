@@ -1,11 +1,22 @@
 import "./style/sidebar.css";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+
 
 const Sidebar = (props) => {
+
+      const navigate = useNavigate();
+
+    const handleLogout = () => {
+    localStorage.removeItem("id")
+    navigate('/login')
+    console.log("done")
+  }
     return(
         <>
         <div className="side_body">
-            <input type="checkbox" id="check" onClick={() => console.log("checkbox clicked")}/>
+            <input type="checkbox" id="check" 
+            // onClick={() => console.log("checkbox clicked")}
+            />
             <label htmlFor="check">
                 <i className="fas fa-bars" id="btn" />
                 <i className="fas fa-times" id="cancel" />
@@ -16,7 +27,7 @@ const Sidebar = (props) => {
                     <li><Link className="side_link" to="/addDetails"><i className=" side_link fas fa-qrcode"></i>Add Details</Link></li>
                     <li><Link className="side_link" to="/profile"><i className=" side_link fas fa-link"></i>Profile</Link></li>
                     <li><Link className="side_link" to="/signup"><i className=" side_link fas fa-stream"></i>Sign up</Link></li>
-                    <li><Link className="side_link" to="/login"><i className=" side_link fas fa-calendar-week"></i>Log out</Link></li>
+                    <li onClick={handleLogout}><Link className="side_link" to="/login"><i className=" side_link fas fa-calendar-week"></i>Log out</Link></li>
                     <li><Link className="side_link" to="/"><i className=" side_link far fa-question-circle"></i>About</Link></li>
                     <li><Link className="side_link" to="/"><i className=" side_link fas fa-sliders-h"></i>Services</Link></li>
                     <li><Link className="side_link" to="/"><i className=" side_link far fa-envelope"></i>Contact</Link></li>

@@ -3,6 +3,7 @@ import { useState } from "react";
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import Sidebar from "../Components/sidebar";
+import Navbar from "../Components/Navbar";
 
 const Profile = () => {
 
@@ -29,11 +30,14 @@ const Profile = () => {
     }, [])
 
     return(
-        <Sidebar>
-            <h1 style={{marginLeft:"300px"}}>
-                Welcome {data.fname} {data.lname}
-            </h1>
-        </Sidebar>
+        <>
+            <Navbar />
+            <Sidebar>
+                <h1 style={{marginLeft:"300px"}}>
+                    Welcome {data.fname} {data.lname}
+                </h1>
+            </Sidebar>
+        </>
     )
 }
 

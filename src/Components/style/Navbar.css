@@ -1,0 +1,38 @@
+.list_icons_div:hover {
+	background-color: rgba(128, 128, 128, 0.4);
+	/* padding: 5px 10px; */
+}
+
+.icons {
+	display: flex;
+	align-items: center;
+}
+
+.active {
+	background-color: rgba(128, 128, 128, 0.3);
+	border: 1px solid black;
+}
+
+.list_icons {
+	height: 30px;
+	width: 30px;
+	color: grey;
+	margin: 5px 15px;
+	cursor: pointer;
+}
+
+.navbar_paper {
+	/* padding: 5px 15px; */
+	margin-left: 20px;
+}
+
+.change_view {
+	margin: 0 5px;
+}
+
+.navbar_heading {
+	margin-left: 20px;
+	color: #000;
+	font-size: 20px;
+	letter-spacing: 1px;
+}
